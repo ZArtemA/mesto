@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Сервис Mesto</title>
+</head>
+
+<body class="page">
+    <div class="popup popup_opened">
+        <div class="popup__container">
+            <button class="buttons popup__btn-close">
+                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+            </button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__textplace">
+                <input type="text" value="Жак-Ив Кусто" name="name" class="popup__name">
+                <input type="text" value="Исследователь океана" name="name" class="popup__profession">
+                <button class="popup__btn-save" type='submit' value='Сохранить'>Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div class="page-borders">
+            <header class="header">
+                <img class="header__logo" src="./images/logo.svg" alt="Лого">
+                <hr class="header__line">
+            </header>
+            <main class="content">
+                <section class="profile">
+                    <div class="profile__info">
+                        <img class="profile__image" src="./images/kusto.jpg" alt="Жак-Ив Кусто">
+                        <div class="profile__edit">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <button class="buttons profile__btn-edit">
+                                <img class="profile__btn-edit-image" src="./images/edit.svg" alt="Редактировать">
+                            </button>
+                        </div>
+                        <p class="profile__profession">Исследователь океана</p>
+                    </div>
+                    <button class="buttons profile__btn-add">
+                        <img class="profile__btn-add-image" src="./images/plus.svg" alt="Добавить">
+                    </button>
+                </section>
+                <section class="cards">
+                    <ul class="cards__gallery">
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg"
+                                    alt="Карачаевск">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Карачаевск</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg"
+                                    alt="Эльбрус">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Гора Эльбрус</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg"
+                                    alt="Домбай">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Домбай</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg"
+                                    alt="Эльбрус">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Гора Эльбрус</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg"
+                                    alt="Домбай">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Домбай</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure class="cards__title-image">
+                                <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg"
+                                    alt="Карачаевск">
+                                <figcaption class="cards__title">
+                                    <h3 class="card__title">Карачаево-Черкессия</h3>
+                                    <button class="cards__btn-like buttons">
+                                        <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
+                                    </button>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <footer class="footer">
+                <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+            </footer>
+        </div>
+    </div>
+</body>
+<script src="scripts/script.js"></script>
+
+</html>

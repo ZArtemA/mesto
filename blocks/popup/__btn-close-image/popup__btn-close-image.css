@@ -1,0 +1,10 @@
+.popup__btn-close-image{
+    width: 40.7px;
+    height: 40.7px;
+}  
+@media screen and (max-width: 950px){
+.popup__btn-close-image{
+    height: 26px;
+    width: 26px;
+    }
+}
