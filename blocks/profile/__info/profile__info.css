@@ -2,4 +2,11 @@
     font-family: 'Inter', Arial, sans-serif;
     font-style: normal;
     color: #FFFFFF;
+    display: flex;
+}
+
+@media screen and (max-width: 950px){
+    .profile__info{
+        flex-direction: column;
+    }
 }

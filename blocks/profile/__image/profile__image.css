@@ -3,8 +3,6 @@
     width: 120px;
     border-radius: 50%;
     padding: 3.75px 22.5px;
-    margin-right: 7.5px;
-    margin-left: -22.5px;
     float: left;
     vertical-align: middle;
 }
@@ -13,7 +11,7 @@
     height: 120px;
     width: 120px;
     padding: 3.75px 26.25px 3.75px 22.5px;
-    margin-left: 59.5px;
+    margin: 0 auto;
     float: none;
     }
 }

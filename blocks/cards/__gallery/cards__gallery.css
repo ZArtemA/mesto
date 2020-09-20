@@ -9,7 +9,6 @@
   }
   @media screen and (max-width: 945px){
     .cards__gallery{
-    padding: 0;
     grid-template-columns: repeat(auto-fit, minmax(282px, 1fr)); 
-    }
+  }
 } 
