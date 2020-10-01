@@ -1,6 +1,7 @@
 .cards__btn-like{
     border: none;
+    width: 20.76px;
     float: right;
     margin-top: 6px;
-
+    background: url(../../../images/heart.svg) center no-repeat;
 }

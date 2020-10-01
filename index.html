@@ -31,60 +31,6 @@
             </section>
             <section class="cards">
                 <ul class="cards__gallery">
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Карачаевск</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Эльбрус">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Гора Эльбрус</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Домбай</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Эльбрус">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Гора Эльбрус</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Домбай</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__title-image">
-                        <img class="cards__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск">
-                        <div class="cards__place">
-                            <h2 class="cards__title">Карачаево-Черкессия</h2>
-                            <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
-                                <img class="cards__btn-like-image" src="./images/heart.svg" alt="Нравится">
-                            </button>
-                        </div>
-                    </li>
                 </ul>
             </section>
         </main>
@@ -92,19 +38,53 @@
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup" id="edit">
         <div class="popup__container">
             <button class="buttons popup__btn-close" aria-label="Закрыть">
                 <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__textplace" method="post" name="popupEdit">
+            <form class="popup__textplace" id="formedit" method="post" name="popupEdit">
                 <input type="text" name="name" class="popup__name">
                 <input type="text" name="name" class="popup__profession">
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
+    <div class="popup" id="add">
+        <div class="popup__container">
+            <button class="buttons popup__btn-close" aria-label="Закрыть">
+                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+            </button>
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__textplace" id="formadd" method="post" name="popupAdd">
+                <input type="text" name="name" placeholder="Название" class="popup__image">
+                <input type="text" name="name" placeholder="Ссылка на картинку" class="popup__link">
+                <button class="popup__btn-save" type="submit" aria-label="Создать">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="image">
+        <div class="popup__big-card">
+            <button class="buttons popup__btn-close" aria-label="Закрыть">
+                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+            </button>
+            <img class="popup__image-big">
+            <h3 class="popup__text"></h3>
+        </div>
+    </div>
+    <template id="card">
+        <li class="cards__title-image">
+            <img class="cards__image">
+            <button class="cards__btn-delete buttons" type="button" aria-label="Удалить">
+            </button>
+            <div class="cards__place">
+                <h2 class="cards__title"></h2>
+                <button class="cards__btn-like buttons" type="button" aria-label="Лайк">
+                </button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>
 

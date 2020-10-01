@@ -1,28 +1,117 @@
-let page = document.querySelector('.page');
-let menu = page.querySelector('.popup');
-let edit = page.querySelector('.profile__btn-edit');
-let close = page.querySelector('.popup__btn-close');
-let formElement = page.querySelector('.popup__textplace');
-let nameInput = page.querySelector('.popup__name');
-let jobInput = page.querySelector('.popup__profession');
-let name = page.querySelector('.profile__name');
-let profession = page.querySelector('.profile__profession');
-
-function togglePopup() {
-        if (!menu.classList.contains('popup_opened')) {
+const page = document.querySelector('.page');
+const popup = page.querySelector('.popup');
+const popupEdit = page.querySelector('#edit');
+const popupAdd = page.querySelector('#add');
+const ImageBig = page.querySelector('#image');
+const closeEdit = popupEdit.querySelector('.popup__btn-close');
+const closeAdd = popupAdd.querySelector('.popup__btn-close');
+const closeImage = ImageBig.querySelector('.popup__btn-close');
+const edit = page.querySelector('.profile__btn-edit');
+const formEdit = page.querySelector('#formedit');
+const nameInput = page.querySelector('.popup__name');
+const jobInput = page.querySelector('.popup__profession');
+const name = page.querySelector('.profile__name');
+const profession = page.querySelector('.profile__profession');
+const add = page.querySelector('.profile__btn-add');
+const cardnameInput = page.querySelector('.popup__image');
+const cardInput = page.querySelector('.popup__link');
+const gallery = page.querySelector('.cards__gallery');
+const formAdd = page.querySelector('#formadd');
+const ImageTitle = ImageBig.querySelector('.popup__text');
+const ImageLink = ImageBig.querySelector('.popup__image-big');
+const cardTemplate = document.querySelector('#card').content;
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+initialCards.forEach(card => addCard(card.name, card.link));
+function addCard(name, link){
+    const cardTemplate = document.querySelector('#card').content;
+    const cardElement = cardTemplate.cloneNode(true);
+    const image = cardElement.querySelector('.cards__image');
+    image.src = link;
+    cardElement.querySelector('.cards__title').textContent = name;
+    cardElement.querySelector('.cards__btn-like').addEventListener('click', function (evt) {
+    const eventTarget = evt.target;
+    eventTarget.classList.toggle('cards__btn-like_active');
+    })
+    cardElement.querySelector('.cards__btn-delete').addEventListener('click', function (evt) {
+        const eventTarget = evt.target;
+        eventTarget.parentElement.remove();
+        })
+        image.addEventListener('click', function() {
+        if (!ImageBig.classList.contains('popup_opened')) {
+            ImageLink.src = link;
+            ImageTitle.textContent = name;
+        }
+        ImageBig.classList.toggle('popup_opened')
+});
+    gallery.prepend(cardElement);
+  }
+function togglePopupEdit() {
+        if (!popupEdit.classList.contains('popup_opened')) {
             nameInput.value = name.textContent;
             jobInput.value = profession.textContent;
         }
-    menu.classList.toggle('popup_opened')
+        popupEdit.classList.toggle('popup_opened')
 }
-
 function formSubmitHandler (evt) {
     evt.preventDefault();
+    if(nameInput.value.length !==0 && jobInput.value.length !==0){
     name.textContent = nameInput.value;
     profession.textContent = jobInput.value;
-    togglePopup();
+    }
+    popupEdit.classList.toggle('popup_opened');
 }
-
-edit.addEventListener('click', togglePopup);
-close.addEventListener('click', togglePopup);
-formElement.addEventListener('submit', formSubmitHandler);
+function cardSubmitHandler (evt) {
+    evt.preventDefault();
+    if(cardnameInput.value.length !==0 && cardInput.value.length !==0){
+    addCard(cardnameInput.value, cardInput.value)
+    }
+    popupAdd.classList.toggle('popup_opened');
+}
+ function togglePopupAdd() {
+    if (!popupAdd.classList.contains('popup_opened')) {
+    }
+    popupAdd.classList.toggle('popup_opened')
+}
+function closeAll(popup){
+    if (popupAdd.classList.contains('popup_opened')) {
+        popupAdd.classList.toggle('popup_opened');
+    }
+    else if (popupEdit.classList.contains('popup_opened')) {
+        popupEdit.classList.toggle('popup_opened');
+    }
+    else if (ImageBig.classList.contains('popup_opened')) {
+        ImageBig.classList.toggle('popup_opened');
+    }
+}
+edit.addEventListener('click', togglePopupEdit);
+closeEdit.addEventListener('click', closeAll);
+closeAdd.addEventListener('click', closeAll);
+closeImage.addEventListener('click', closeAll);
+add.addEventListener('click', togglePopupAdd);
+formEdit.addEventListener('submit', formSubmitHandler);
+formAdd.addEventListener('submit', cardSubmitHandler);
