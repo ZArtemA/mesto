@@ -2,10 +2,10 @@ const page = document.querySelector('.page');
 const popup = page.querySelector('.popup');
 const popupEdit = page.querySelector('#edit');
 const popupAdd = page.querySelector('#add');
-const ImageBig = page.querySelector('#image');
+const imageBig = page.querySelector('#image');
 const closeEdit = popupEdit.querySelector('.popup__btn-close');
 const closeAdd = popupAdd.querySelector('.popup__btn-close');
-const closeImage = ImageBig.querySelector('.popup__btn-close');
+const closeImage = imageBig.querySelector('.popup__btn-close');
 const edit = page.querySelector('.profile__btn-edit');
 const formEdit = page.querySelector('#formedit');
 const nameInput = page.querySelector('.popup__name');
@@ -17,8 +17,8 @@ const cardnameInput = page.querySelector('.popup__image');
 const cardInput = page.querySelector('.popup__link');
 const gallery = page.querySelector('.cards__gallery');
 const formAdd = page.querySelector('#formadd');
-const ImageTitle = ImageBig.querySelector('.popup__text');
-const ImageLink = ImageBig.querySelector('.popup__image-big');
+const imageTitle = imageBig.querySelector('.popup__text');
+const imageLink = imageBig.querySelector('.popup__image-big');
 const cardTemplate = document.querySelector('#card').content;
 const initialCards = [
     {
@@ -46,9 +46,11 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-initialCards.forEach(card => addCard(card.name, card.link));
+function renderCards(massive){
+    massive.forEach(card => addToGallery(card.name, card.link));
+}
+renderCards(initialCards);
 function addCard(name, link){
-    const cardTemplate = document.querySelector('#card').content;
     const cardElement = cardTemplate.cloneNode(true);
     const image = cardElement.querySelector('.cards__image');
     image.src = link;
@@ -62,56 +64,53 @@ function addCard(name, link){
         eventTarget.parentElement.remove();
         })
         image.addEventListener('click', function() {
-        if (!ImageBig.classList.contains('popup_opened')) {
-            ImageLink.src = link;
-            ImageTitle.textContent = name;
+        if (!imageBig.classList.contains('popup_opened')) {
+            imageLink.src = link;
+            imageTitle.textContent = name;
         }
-        ImageBig.classList.toggle('popup_opened')
+        togglePopup(imageBig);
 });
-    gallery.prepend(cardElement);
-  }
+    return cardElement;
+}
+function addToGallery(name, link){
+    const newCard = addCard(name, link);
+    gallery.prepend(newCard);
+}
+function togglePopup(popupElement){
+    popupElement.classList.toggle('popup_opened')
+}
 function togglePopupEdit() {
         if (!popupEdit.classList.contains('popup_opened')) {
             nameInput.value = name.textContent;
             jobInput.value = profession.textContent;
         }
-        popupEdit.classList.toggle('popup_opened')
+    togglePopup(popupEdit);
 }
-function formSubmitHandler (evt) {
+function togglePopupAdd() {
+    togglePopup(popupAdd);
+}
+function toggleImageBig() {
+    togglePopup(imageBig);
+}
+function handlerFormSubmit (evt) {
     evt.preventDefault();
     if(nameInput.value.length !==0 && jobInput.value.length !==0){
     name.textContent = nameInput.value;
     profession.textContent = jobInput.value;
     }
-    popupEdit.classList.toggle('popup_opened');
+    togglePopup(popupEdit);
 }
-function cardSubmitHandler (evt) {
+function handlerCardSubmit (evt) {
     evt.preventDefault();
     if(cardnameInput.value.length !==0 && cardInput.value.length !==0){
-    addCard(cardnameInput.value, cardInput.value)
+        addToGallery(cardnameInput.value, cardInput.value);
     }
-    popupAdd.classList.toggle('popup_opened');
-}
- function togglePopupAdd() {
-    if (!popupAdd.classList.contains('popup_opened')) {
-    }
-    popupAdd.classList.toggle('popup_opened')
-}
-function closeAll(popup){
-    if (popupAdd.classList.contains('popup_opened')) {
-        popupAdd.classList.toggle('popup_opened');
-    }
-    else if (popupEdit.classList.contains('popup_opened')) {
-        popupEdit.classList.toggle('popup_opened');
-    }
-    else if (ImageBig.classList.contains('popup_opened')) {
-        ImageBig.classList.toggle('popup_opened');
-    }
+    togglePopup(popupAdd);
 }
 edit.addEventListener('click', togglePopupEdit);
-closeEdit.addEventListener('click', closeAll);
-closeAdd.addEventListener('click', closeAll);
-closeImage.addEventListener('click', closeAll);
+closeEdit.addEventListener('click', togglePopupEdit);
+closeAdd.addEventListener('click', togglePopupAdd);
+closeImage.addEventListener('click', toggleImageBig);
 add.addEventListener('click', togglePopupAdd);
-formEdit.addEventListener('submit', formSubmitHandler);
-formAdd.addEventListener('submit', cardSubmitHandler);
+formEdit.addEventListener('submit', handlerFormSubmit);
+formAdd.addEventListener('submit', handlerCardSubmit);
