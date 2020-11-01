@@ -81,10 +81,6 @@ function togglePopup(popupElement){
     popupElement.classList.toggle('popup_opened')
 }
 
-function closePopup(popupElement) {
-  page.querySelector('.popup_opened').remove('popup_opened');
-}
-
 function togglePopupEdit() {
         if (!popupEdit.classList.contains('popup_opened')) {
             nameInput.value = name.textContent;
