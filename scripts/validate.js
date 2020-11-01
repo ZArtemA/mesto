@@ -8,7 +8,7 @@ function showError(formElement, input) {
     if (input.validity.valueMissing) {
         input.setCustomValidity(errorMessages.passError);
     }
-    else if (input===formElement.querySelector('#popup-link') && !input.validity.valid) {
+    else if (!formElement.querySelector('input.popup__link').validity.valid) {
         input.setCustomValidity(errorMessages.missUrlError);
     }
     const errorElement = formElement.querySelector(`#${input.id}-error`);
