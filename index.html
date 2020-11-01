@@ -45,8 +45,10 @@
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <form class="popup__textplace" id="formedit" method="post" name="popupEdit">
-                <input type="text" name="name" class="popup__name">
-                <input type="text" name="name" class="popup__profession">
+                <input type="text" name="name" id="popup-name" placeholder="Имя" class="popup__input" minlength="2" maxlength="40" required>
+                <span class="popup__input-error" id="popup-name-error"></span>
+                <input type="text" name="name" id="popup-profession" placeholder="Деятельность" class="popup__input" minlength="2" maxlength="200" required>
+                <span class="popup__input-error" id="popup-profession-error"></span>
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
@@ -58,8 +60,10 @@
             </button>
             <h3 class="popup__title">Новое место</h3>
             <form class="popup__textplace" id="formadd" method="post" name="popupAdd">
-                <input type="text" name="name" placeholder="Название" class="popup__image">
-                <input type="text" name="name" placeholder="Ссылка на картинку" class="popup__link">
+                <input type="text" name="name" id="popup-image" placeholder="Название" class="popup__input" minlength="2" maxlength="30" required>
+                <span class="popup__input-error" id="popup-image-error"></span>
+                <input type="url" name="link" id="popup-link" placeholder="Ссылка на картинку" class="popup__input" required>
+                <span class="popup__input-error" id="popup-link-error"></span>
                 <button class="popup__btn-save" type="submit" aria-label="Создать">Создать</button>
             </form>
         </div>
@@ -86,6 +90,7 @@
         </li>
     </template>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

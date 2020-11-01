@@ -1,5 +1,5 @@
 const page = document.querySelector('.page');
-const popup = page.querySelector('.popup');
+const popups = page.querySelectorAll('.popup');
 const popupEdit = page.querySelector('#edit');
 const popupAdd = page.querySelector('#add');
 const imageBig = page.querySelector('#image');
@@ -8,17 +8,18 @@ const closeAdd = popupAdd.querySelector('.popup__btn-close');
 const closeImage = imageBig.querySelector('.popup__btn-close');
 const edit = page.querySelector('.profile__btn-edit');
 const formEdit = page.querySelector('#formedit');
-const nameInput = page.querySelector('.popup__name');
-const jobInput = page.querySelector('.popup__profession');
+const nameInput = page.querySelector('#popup-name');
+const jobInput = page.querySelector('#popup-profession');
 const name = page.querySelector('.profile__name');
 const profession = page.querySelector('.profile__profession');
 const add = page.querySelector('.profile__btn-add');
-const cardnameInput = page.querySelector('.popup__image');
-const cardInput = page.querySelector('.popup__link');
+const cardnameInput = page.querySelector('#popup-image');
+const cardInput = page.querySelector('#popup-link');
 const gallery = page.querySelector('.cards__gallery');
 const formAdd = page.querySelector('#formadd');
 const imageTitle = imageBig.querySelector('.popup__text');
 const imageLink = imageBig.querySelector('.popup__image-big');
+const escape = 'Escape';
 const cardTemplate = document.querySelector('#card').content;
 const initialCards = [
     {
@@ -79,6 +80,11 @@ function addToGallery(name, link){
 function togglePopup(popupElement){
     popupElement.classList.toggle('popup_opened')
 }
+
+function closePopup(popupElement) {
+  page.querySelector('.popup_opened').remove('popup_opened');
+}
+
 function togglePopupEdit() {
         if (!popupEdit.classList.contains('popup_opened')) {
             nameInput.value = name.textContent;
@@ -107,6 +113,21 @@ function handlerCardSubmit (evt) {
     }
     togglePopup(popupAdd);
 }
+
+const closeTargetPopup = (event) => {
+  let target = page.querySelector('.popup_opened');
+  if (event.target === event.currentTarget){
+    togglePopup(target);
+  }
+}
+
+const closeByEsc = (event) => {
+  let target = page.querySelector('.popup_opened');
+        if (event.key === escape){
+          togglePopup(target); 
+       } 
+}
+
 edit.addEventListener('click', togglePopupEdit);
 closeEdit.addEventListener('click', togglePopupEdit);
 closeAdd.addEventListener('click', togglePopupAdd);
@@ -114,3 +135,7 @@ closeImage.addEventListener('click', toggleImageBig);
 add.addEventListener('click', togglePopupAdd);
 formEdit.addEventListener('submit', handlerFormSubmit);
 formAdd.addEventListener('submit', handlerCardSubmit);
+page.addEventListener('keydown', closeByEsc);
+popups.forEach((popup) => {
+  popup.addEventListener('click', closeTargetPopup);
+});
