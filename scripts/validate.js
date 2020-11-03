@@ -10,26 +10,26 @@ const formValidation = {
 const errorMessages = {
     passError: 'Вы пропустили это поле.',
     missUrlError: 'Введите адрес сайта.'
-}
+};
 
 function showError(formElement, input, error, inputLink) {
     const link = formElement.querySelector(`.${inputLink}`);
     if (input.validity.valueMissing) {
         input.setCustomValidity(errorMessages.passError);
-    }
+    };
     else if (link != null && !link.validity.valid) {
         link.setCustomValidity(errorMessages.missUrlError);
-    }
+    };
     const errorElement = formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = input.validationMessage;
     input.classList.add(`${error}`);
-}
+};
 
 function hideError(formElement, input, error) {
     const errorElement = formElement.querySelector(`#${input.id}-error`);
     errorElement.textContent = '';
     input.classList.remove(`${error}`);
-}
+};
 
 function checkInputValidity(formElement, input, error, inputLink) {
     input.setCustomValidity('');
@@ -38,8 +38,8 @@ function checkInputValidity(formElement, input, error, inputLink) {
         hideError(formElement, input, error);
     } else {
         showError(formElement, input, error, inputLink);
-    }
-}
+    };
+};
 
 function toggleButtonState(formElement, buttonElement, buttonDisabled) {
     if (formElement.checkValidity()) {
@@ -48,8 +48,9 @@ function toggleButtonState(formElement, buttonElement, buttonDisabled) {
     } else {
         buttonElement.classList.add(`${buttonDisabled}`);
         buttonElement.disabled = true;
-    }
-}
+    };
+};
+
 function resetErrors(formElement, settings){
     if (formElement.querySelectorAll(`.${settings.inputSelector}`).length!=0){ 
         const inputs = Array.from(formElement.querySelectorAll(`.${settings.inputSelector}`));
@@ -57,15 +58,15 @@ function resetErrors(formElement, settings){
             target.classList.remove(`${settings.inputErrorClass}`);
             formElement.querySelector(`#${target.id}-error`).textContent = '';
         });
-    }
-}
+    };
+};
+
 const setEventListeners = (
     formElement,
     inputClass,
     submitClass,
     disabledClass,
     inputError,
-    errorMessage,
     inputClassLink
 ) => {
     const inputElements = Array.from(formElement.querySelectorAll(`.${inputClass}`));
@@ -81,7 +82,6 @@ const setEventListeners = (
 
 function enableValidation(validationConfig) {
     const formElements = Array.from(document.querySelectorAll(`.${validationConfig.formSelector}`));
-
     formElements.forEach(form => {
         form.addEventListener('submit', (evt) => {
             evt.preventDefault();
@@ -92,9 +92,9 @@ function enableValidation(validationConfig) {
         validationConfig.submitButtonSelector,
         validationConfig.inactiveButtonClass,
         validationConfig.inputErrorClass,
-        validationConfig.errorMessage,
         validationConfig.inputSelectorLink
         );
     });
-}
+};
+
 enableValidation(formValidation);
