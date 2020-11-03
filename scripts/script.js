@@ -8,6 +8,7 @@ const closeAdd = popupAdd.querySelector('.popup__btn-close');
 const closeImage = imageBig.querySelector('.popup__btn-close');
 const buttonEdit = page.querySelector('.profile__btn-edit');
 const buttonSaveCard = popupAdd.querySelector('.popup__btn-save');
+const buttonSaveEdit = popupEdit.querySelector('.popup__btn-save');
 const formEdit = page.querySelector('#formedit');
 const nameInput = page.querySelector('#popup-name');
 const jobInput = page.querySelector('#popup-profession');
@@ -58,6 +59,7 @@ function addToGallery(name, link){
 function closePopup(popupElement) { 
     popupElement.classList.remove('popup_opened');
     page.removeEventListener('keydown', closeByEsc);
+    resetErrors(popupElement, formValidation);
 } 
 function openPopup(popupElement){
     popupElement.classList.add('popup_opened');
@@ -74,6 +76,8 @@ function openPopupEdit() {
     nameInput.value = name.textContent;
     jobInput.value = profession.textContent;
     openPopup(popupEdit);
+    buttonSaveEdit.disabled = true;
+    buttonSaveEdit.classList.add('popup__btn-save_invalid');
 }
 function handlerFormSubmit (evt) {
     evt.preventDefault();
