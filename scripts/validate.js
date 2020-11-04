@@ -16,7 +16,7 @@ function showError(formElement, input, error, inputLink) {
     const link = formElement.querySelector(`.${inputLink}`);
     if (input.validity.valueMissing) {
         input.setCustomValidity(errorMessages.passError);
-    };
+    }
     else if (link != null && !link.validity.valid) {
         link.setCustomValidity(errorMessages.missUrlError);
     };
@@ -52,13 +52,11 @@ function toggleButtonState(formElement, buttonElement, buttonDisabled) {
 };
 
 function resetErrors(formElement, settings){
-    if (formElement.querySelectorAll(`.${settings.inputSelector}`).length!=0){ 
-        const inputs = Array.from(formElement.querySelectorAll(`.${settings.inputSelector}`));
-        inputs.forEach((target) => {
-            target.classList.remove(`${settings.inputErrorClass}`);
-            formElement.querySelector(`#${target.id}-error`).textContent = '';
-        });
-    };
+    const inputs = Array.from(formElement.querySelectorAll(`.${settings.inputSelector}`));
+    inputs.forEach((target) => {
+        target.classList.remove(`${settings.inputErrorClass}`);
+        formElement.querySelector(`#${target.id}-error`).textContent = '';
+    });
 };
 
 const setEventListeners = (

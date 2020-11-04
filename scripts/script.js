@@ -59,7 +59,6 @@ function addToGallery(name, link){
 function closePopup(popupElement) { 
     popupElement.classList.remove('popup_opened');
     page.removeEventListener('keydown', closeByEsc);
-    resetErrors(popupElement, formValidation);
 } 
 function openPopup(popupElement){
     popupElement.classList.add('popup_opened');
@@ -71,6 +70,7 @@ function openPopupAdd() {
     cardInput.value = '';
     buttonSaveCard.disabled = true;
     buttonSaveCard.classList.add('popup__btn-save_invalid');
+    resetErrors(popupAdd, formValidation);
 }
 function openPopupEdit() {
     nameInput.value = name.textContent;
@@ -78,6 +78,7 @@ function openPopupEdit() {
     openPopup(popupEdit);
     buttonSaveEdit.disabled = true;
     buttonSaveEdit.classList.add('popup__btn-save_invalid');
+    resetErrors(popupEdit, formValidation);
 }
 function handlerFormSubmit (evt) {
     evt.preventDefault();
