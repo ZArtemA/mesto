@@ -3,14 +3,14 @@ export class Card {
     constructor(data, templateSelector) {
       this._name = data.name;
       this._link = data.link;
-      this._template = document.querySelector(templateSelector).content.querySelector('.cards__title-image');
+      this._template = document.querySelector(templateSelector).content.querySelector('.card__title-image');
       this._imageBig = document.querySelector('#image');
     }
 
     generateCard(){
       this._element = this._template.cloneNode(true);
-        this._element.querySelector('.cards__image').src = this._link;
-        this._element.querySelector('.cards__title').textContent = this._name;
+        this._element.querySelector('.card__image').src = this._link;
+        this._element.querySelector('.card__title').textContent = this._name;
         this._setEventListeners();
 
         return this._element;
@@ -34,15 +34,14 @@ export class Card {
         document.removeEventListener('keydown', this._handleCloseByEsc);
       }
       _deleteCard(){
-        this._element.closest('.cards__title-image').remove('.cards__title-image');
+        this._element.closest('.card__title-image').remove('.card__title-image');
       }
       _toggleLike(){
-        this._element.querySelector('.cards__btn-like').classList.toggle('cards__btn-like_active');
+        this._element.querySelector('.card__btn-like').classList.toggle('card__btn-like_active');
       }
       _handleCloseByOverlay = (event) => {
         if (event.target === event.currentTarget){
           this._handleClosePopup();
-          console.log(this);
         }
       }
       _handleCloseByEsc = (event) => {
@@ -54,13 +53,13 @@ export class Card {
       }
   
       _setEventListeners(){
-      this._element.querySelector('.cards__image').addEventListener('click', () =>{
+      this._element.querySelector('.card__image').addEventListener('click', () =>{
         this._handleOpenPopup();
       });
-            this._element.querySelector('.cards__btn-delete').addEventListener('click', () =>{
+            this._element.querySelector('.card__btn-delete').addEventListener('click', () =>{
         this._deleteCard();
       });
-      this._element.querySelector('.cards__btn-like').addEventListener('click', () =>{
+      this._element.querySelector('.card__btn-like').addEventListener('click', () =>{
         this._toggleLike();
       });
     }
