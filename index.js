@@ -30,7 +30,7 @@ const formsList = page.querySelectorAll('form');
 });
 
 function addToGallery(item) {
-    const card = new Card(item, '#card');
+    const card = new Card(item, '.card');
     const cardElement = card.generateCard();
     gallery.prepend(cardElement);
 }
