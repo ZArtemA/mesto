@@ -1,11 +1,14 @@
+
+import { FormValidator, settings } from './scripts/FormValidator.js';
+import { Card } from './scripts/Card.js';
+import { initialCards, escape } from './scripts/data.js';
+
 const page = document.querySelector('.page');
 const popups = page.querySelectorAll('.popup');
 const popupEdit = page.querySelector('#edit');
 const popupAdd = page.querySelector('#add');
-const imageBig = page.querySelector('#image');
 const closeEdit = popupEdit.querySelector('.popup__btn-close');
 const closeAdd = popupAdd.querySelector('.popup__btn-close');
-const closeImage = imageBig.querySelector('.popup__btn-close');
 const buttonEdit = page.querySelector('.profile__btn-edit');
 const buttonSaveCard = popupAdd.querySelector('.popup__btn-save');
 const buttonSaveEdit = popupEdit.querySelector('.popup__btn-save');
@@ -19,42 +22,23 @@ const cardnameInput = page.querySelector('#popup-image');
 const cardInput = page.querySelector('#popup-link');
 const gallery = page.querySelector('.cards__gallery');
 const formAdd = page.querySelector('#formadd');
-const imageTitle = imageBig.querySelector('.popup__text');
-const imageLink = imageBig.querySelector('.popup__image-big');
-const escape = 'Escape';
-const cardTemplate = document.querySelector('#card').content;
-function renderCards(massive){
-    massive.forEach(card => addToGallery(card.name, card.link));
-}
-renderCards(initialCards);
-function getCard(name, link){
-    const cardElement = cardTemplate.cloneNode(true);
-    const image = cardElement.querySelector('.cards__image');
-    image.src = link;
-    image.alt = name;
-    cardElement.querySelector('.cards__title').textContent = name;
-    cardElement.querySelector('.cards__btn-like').addEventListener('click', function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle('cards__btn-like_active');
-    })
-    cardElement.querySelector('.cards__btn-delete').addEventListener('click', function (evt) {
-        const eventTarget = evt.target;
-        eventTarget.closest('.cards__title-image').remove();
-        })
-        image.addEventListener('click', function() {
-        if (!imageBig.classList.contains('popup_opened')) {
-            imageLink.src = link;
-            imageLink.alt = name;
-            imageTitle.textContent = name;
-        }
-        openPopup(imageBig);
+const formsList = page.querySelectorAll('form');
+
+  
+  initialCards.forEach((item) => {
+    addToGallery(item);
 });
-    return cardElement;
+
+function addToGallery(item) {
+    const card = new Card(item, '#card');
+    const cardElement = card.generateCard();
+    gallery.prepend(cardElement);
 }
-function addToGallery(name, link){
-    const newCard = getCard(name, link);
-    gallery.prepend(newCard);
-}
+
+formsList.forEach((item) =>{
+  const newForm = new FormValidator(settings, item);
+  newForm.enableValidation();
+});
 
 function closePopup(popupElement) { 
     popupElement.classList.remove('popup_opened');
@@ -70,7 +54,6 @@ function openPopupAdd() {
     cardInput.value = '';
     buttonSaveCard.disabled = true;
     buttonSaveCard.classList.add('popup__btn-save_invalid');
-    resetErrors(popupAdd, formValidation);
 }
 function openPopupEdit() {
     nameInput.value = name.textContent;
@@ -78,7 +61,6 @@ function openPopupEdit() {
     openPopup(popupEdit);
     buttonSaveEdit.disabled = true;
     buttonSaveEdit.classList.add('popup__btn-save_invalid');
-    resetErrors(popupEdit, formValidation);
 }
 function handlerFormSubmit (evt) {
     evt.preventDefault();
@@ -88,10 +70,11 @@ function handlerFormSubmit (evt) {
 }
 function handlerCardSubmit (evt) {
     evt.preventDefault();
-    addToGallery(cardnameInput.value, cardInput.value);
+    const newCard ={name: cardnameInput.value, link: cardInput.value}
+    addToGallery(newCard);
     closePopup(popupAdd);
 }
-const closeTargetPopup = (event) => {
+const closeByOverlay = (event) => {
   const target = page.querySelector('.popup_opened');
   if (event.target === event.currentTarget){
     closePopup(target);
@@ -108,14 +91,11 @@ buttonAdd.addEventListener('click', openPopupAdd);
 formEdit.addEventListener('submit', handlerFormSubmit);
 formAdd.addEventListener('submit', handlerCardSubmit);
 popups.forEach((popup) => {
-  popup.addEventListener('click', closeTargetPopup);
+  popup.addEventListener('click', closeByOverlay);
 });
 closeEdit.addEventListener(`click`, () =>
     closePopup(popupEdit)
 );
 closeAdd.addEventListener(`click`, () =>
     closePopup(popupAdd)
-);
-closeImage.addEventListener(`click`, () =>
-    closePopup(imageBig)
 );
