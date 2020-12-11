@@ -3,11 +3,11 @@ export class Card {
     constructor(data, templateSelector) {
       this._name = data.name;
       this._link = data.link;
-      this._template = document.querySelector(templateSelector).content.querySelector('.card__title-image');
       this._imageBig = document.querySelector('#image');
     }
 
     generateCard(){
+      this._template = document.querySelector(templateSelector).content.querySelector('.card__title-image');
       this._element = this._template.cloneNode(true);
         this._element.querySelector('.card__image').src = this._link;
         this._element.querySelector('.card__title').textContent = this._name;
@@ -47,8 +47,6 @@ export class Card {
       _handleCloseByEsc = (event) => {
         if (event.key === escape){
         this._handleClosePopup();
-        this._handleClosePopup();
-
         }
       }
   
