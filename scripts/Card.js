@@ -1,21 +1,25 @@
 import { escape } from './data.js';
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data) {
       this._name = data.name;
       this._link = data.link;
       this._imageBig = document.querySelector('#image');
     }
 
+    _getTemplate(){
+      const cardElement = document.querySelector('.card').content.querySelector('.card__title-image').cloneNode(true);
+      return cardElement;
+    }
+
     generateCard(){
-      this._template = document.querySelector(templateSelector).content.querySelector('.card__title-image');
-      this._element = this._template.cloneNode(true);
+      this._element = this._getTemplate();
         this._element.querySelector('.card__image').src = this._link;
         this._element.querySelector('.card__title').textContent = this._name;
         this._setEventListeners();
 
         return this._element;
       }
-     
+
       _handleOpenPopup() {
         this._imageBig.querySelector('.popup__image-big').src = this._link;
         this._imageBig.querySelector('.popup__image-big').alt = this._name;
