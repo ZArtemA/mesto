@@ -13,11 +13,8 @@ const PopupEnlargeImage = new PopupWithImage('#image');
 const gallery = document.querySelector('.cards__gallery');
 const page = document.querySelector('.page');
 const popupEdit = page.querySelector('#edit');
-const popupAdd = page.querySelector('#add');
 const buttonEdit = page.querySelector('.profile__btn-edit');
-const buttonSaveCard = popupAdd.querySelector('.popup__btn-save');
 const buttonSaveEdit = popupEdit.querySelector('.popup__btn-save');
-
 const nameInput = page.querySelector('#popup-name');
 const jobInput = page.querySelector('#popup-profession');
 const name = page.querySelector('.profile__name');
