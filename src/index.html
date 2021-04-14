@@ -4,29 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Сервис Mesto</title>
 </head>
 
 <body class="page">
     <div class="page__container">
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="Лого">
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Лого">
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__info">
-                    <img class="profile__image" src="./images/kusto.jpg" alt="Жак-Ив Кусто">
+                    <img class="profile__image" src="<%=require('./images/kusto.jpg')%>" alt="Жак-Ив Кусто">
                     <div class="profile__edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <button class="buttons profile__btn-edit" type="button" aria-label="Редактировать профиль">
-                            <img class="profile__btn-edit-image" src="./images/edit.svg" alt="Редактировать">
+                            <img class="profile__btn-edit-image" src="<%=require('./images/edit.svg')%>" alt="Редактировать">
                         </button>
                         <p class="profile__profession">Исследователь океана</p>
                     </div>
                 </div>
                 <button class="buttons profile__btn-add" type="button" aria-label="Добавить карточку">
-                    <img class="profile__btn-add-image" src="./images/plus.svg" alt="Добавить">
+                    <img class="profile__btn-add-image" src="<%=require('./images/plus.svg')%>" alt="Добавить">
                 </button>
             </section>
             <section class="cards">
@@ -41,13 +40,13 @@
     <div class="popup" id="edit">
         <div class="popup__container">
             <button class="buttons popup__btn-close" aria-label="Закрыть">
-                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+                <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <form class="popup__textplace" id="formedit" method="post" name="popupEdit">
                 <input type="text" name="name" id="popup-name" placeholder="Имя" class="popup__input" minlength="2" maxlength="40" required>
                 <span class="popup__input-error" id="popup-name-error"></span>
-                <input type="text" name="name" id="popup-profession" placeholder="Деятельность" class="popup__input" minlength="2" maxlength="200" required>
+                <input type="text" name="info" id="popup-profession" placeholder="Деятельность" class="popup__input" minlength="2" maxlength="200" required>
                 <span class="popup__input-error" id="popup-profession-error"></span>
                 <button class="popup__btn-save" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
@@ -56,7 +55,7 @@
     <div class="popup" id="add">
         <div class="popup__container">
             <button class="buttons popup__btn-close" aria-label="Закрыть">
-                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+                <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
             </button>
             <h3 class="popup__title">Новое место</h3>
             <form class="popup__textplace" id="formadd" method="post" name="popupAdd">
@@ -71,7 +70,7 @@
     <div class="popup" id="image">
         <div class="popup__big-card">
             <button class="buttons popup__btn-close" aria-label="Закрыть">
-                <img class="popup__btn-close-image" src="./images/close.svg" alt="Закрыть">
+                <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
             </button>
             <img class="popup__image-big" src="#" alt=" ">
             <h3 class="popup__text"></h3>

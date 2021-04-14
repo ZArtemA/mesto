@@ -1,9 +1,10 @@
 import { escape } from './data.js';
 export class Card {
-    constructor(data) {
+    constructor(data, handleCardClick, cardSelector) {
       this._name = data.name;
       this._link = data.link;
-      this._imageBig = document.querySelector('#image');
+      this._imageBig = document.querySelector(cardSelector);
+      this._handleCardClick = handleCardClick;
     }
 
     _getTemplate(){
@@ -16,22 +17,8 @@ export class Card {
         this._element.querySelector('.card__image').src = this._link;
         this._element.querySelector('.card__title').textContent = this._name;
         this._setEventListeners();
-
         return this._element;
       }
-
-      _handleOpenPopup() {
-        this._imageBig.querySelector('.popup__image-big').src = this._link;
-        this._imageBig.querySelector('.popup__image-big').alt = this._name;
-        this._imageBig.querySelector('.popup__text').textContent = this._name;
-        this._imageBig.classList.add('popup_opened');
-        this._imageBig.addEventListener('click', this._handleCloseByOverlay);
-        document.addEventListener('keydown', this._handleCloseByEsc);
-        this._imageBig.querySelector('.popup__btn-close-image').addEventListener('click', () =>{
-          this._handleClosePopup();
-        });
-      }
-    
       _handleClosePopup() {
         this._imageBig.classList.remove('popup_opened');
         this._imageBig.removeEventListener('click', this._handleCloseByOverlay);
@@ -53,11 +40,9 @@ export class Card {
         this._handleClosePopup();
         }
       }
-  
-      _setEventListeners(){
-      this._element.querySelector('.card__image').addEventListener('click', () =>{
-        this._handleOpenPopup();
-      });
+
+     _setEventListeners(){
+       this._element.querySelector('.card__image').addEventListener('click', this._handleCardClick);
             this._element.querySelector('.card__btn-delete').addEventListener('click', () =>{
         this._deleteCard();
       });
