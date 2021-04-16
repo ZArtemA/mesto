@@ -9,7 +9,7 @@ export class Section {
     }
     renderItems() {
       this._renderedItems.forEach(item => {
-        const renderedItem = this._renderer(item);
+        this._renderer(item);
       })
     }
 }

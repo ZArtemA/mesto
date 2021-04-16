@@ -5,8 +5,8 @@ export class UserInfo{
     };
     getUserInfo(){
         return{
-            returnName: this._name.textContent,
-            returnInfo: this._info.textContent,
+            name: this._name.textContent,
+            info: this._info.textContent,
         };
     }
     setUserInfo(newName, newInfo){

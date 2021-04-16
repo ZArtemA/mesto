@@ -72,5 +72,14 @@ const settings = {
       });
       this._toggleButtonState();
     };
+
+    resetErrors(){
+      this._inputList.forEach((input) => {
+          this._hideInputError(input);
+          this._button.classList.add(this._settings.inactiveButtonClass);
+          this._button.disabled = true;
+      });
+
+  };
   }
   export { FormValidator, settings };
