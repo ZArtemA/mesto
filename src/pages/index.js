@@ -33,12 +33,12 @@ function createCard(item){
     popupImage.open(item.link, item.name)},
     cardSelector
   ).generateCard();
-  cardList.addItem(card);
+  return card;
 }
 
 const cardList = new Section({
   items: initialCards,
-  renderer: (item) => {createCard(item)}
+  renderer: (item) => {cardList.addItem(createCard(item))}
 }, gallery);
 
 cardList.renderItems();
@@ -77,7 +77,7 @@ const popupAddCard = new PopupWithForm(
       link: data.cardInput
     };
 
-    createCard(data);
+    cardList.addItem(createCard(data));
   }
 );
 
