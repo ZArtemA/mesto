@@ -18,4 +18,3 @@ export const name = page.querySelector('.profile__name');
 export const profession = page.querySelector('.profile__profession');
 export const avatar = page.querySelector('.profile__image');
 export const buttonAdd = page.querySelector('.profile__btn-add');
-
