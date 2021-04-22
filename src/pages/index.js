@@ -28,7 +28,6 @@ const api = new Api({
    ])
      .then((result) => {
          const [ownerInfo, cards] = result;
-   
          person = user.getUserInfo(ownerInfo);
          user.setUserInfo(person.name, person.about);
          user.setUserAvatar(person.image);
@@ -50,13 +49,7 @@ const api = new Api({
    
      const submitPopup = new PopupWithSubmit({
        popupSelector: cardDelete,
-       handleFormSubmit: () => {
-        api.removeCard(card.getId())
-       .then(result => {
-           card.deleteCard();
-       })
-       .catch(error => console.log(error));
-   }});
+       handleFormSubmit: function(){}});
    
      const createCard = (data) => {
        const card = new Card({
@@ -70,7 +63,6 @@ const api = new Api({
              })
              .catch(error => console.log(error));
                    postLoading(false, cardDelete);
-   
        });
        submitPopup.setEventListeners();
        submitPopup.open();
@@ -79,7 +71,7 @@ const api = new Api({
            handleCardClick: (card) => {
            popupImage.open(data.link, data.name);
          },
-         
+
          handleLikeButtonClick: (id) => {
            if (!card.buttonCheckLike()) {
                api.likeCard(card.getId())
