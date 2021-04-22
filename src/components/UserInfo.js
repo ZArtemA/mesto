@@ -9,7 +9,7 @@ export class UserInfo{
             name: data.name,
             about: data.about,
             id: data._id,
-            avatar: data.link
+            image: data.avatar
         };
     }
 
