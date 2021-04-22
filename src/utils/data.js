@@ -1,28 +1,21 @@
-
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 export const escape = 'Escape';
+export const gallery = document.querySelector('.cards__gallery');
+export const page = document.querySelector('.page');
+export const cardSelector = document.querySelector('.card');
+export const imageSelector = document.querySelector(`#image`);
+export const popupEdit = document.querySelector(`#edit`);
+export const popupAvatar = document.querySelector(`#profile`);
+export const popupAdd = document.querySelector(`#add`);
+export const formEdit = document.querySelector(`#formedit`);
+export const formAdd = document.querySelector(`#formadd`);
+export const cardDelete = document.querySelector(`#delete`);
+export const formAvatarEdit = document.querySelector(`#avataredit`);
+export const buttonEdit = page.querySelector('.profile__btn-edit');
+export const buttonAvatarEdit = page.querySelector('.profile__image-place');
+export const nameInput = page.querySelector('#popup-name');
+export const jobInput = page.querySelector('#popup-profession');
+export const name = page.querySelector('.profile__name');
+export const profession = page.querySelector('.profile__profession');
+export const avatar = page.querySelector('.profile__image');
+export const buttonAdd = page.querySelector('.profile__btn-add');
+
