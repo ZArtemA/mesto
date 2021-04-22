@@ -1,6 +1,6 @@
+const page = document.querySelector('.page');
 export const escape = 'Escape';
 export const gallery = document.querySelector('.cards__gallery');
-export const page = document.querySelector('.page');
 export const cardSelector = document.querySelector('.card');
 export const imageSelector = document.querySelector(`#image`);
 export const popupEdit = document.querySelector(`#edit`);

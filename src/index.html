@@ -22,7 +22,8 @@
                     <div class="profile__edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <button class="buttons profile__btn-edit" type="button" aria-label="Редактировать профиль">
-                            <img class="profile__btn-edit-image" src="<%=require('./images/edit.svg')%>" alt="Редактировать">
+                            <img class="profile__btn-edit-image" src="<%=require('./images/edit.svg')%>"
+                                alt="Редактировать">
                         </button>
                         <p class="profile__profession">Исследователь океана</p>
                     </div>
@@ -47,11 +48,14 @@
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <form class="popup__textplace" id="formedit" method="post" name="popupEdit">
-                <input type="text" name="name" id="popup-name" placeholder="Имя" class="popup__input" minlength="2" maxlength="40" required>
+                <input type="text" name="name" id="popup-name" placeholder="Имя" class="popup__input" minlength="2"
+                    maxlength="40" required>
                 <span class="popup__input-error" id="popup-name-error"></span>
-                <input type="text" name="info" id="popup-profession" placeholder="Деятельность" class="popup__input" minlength="2" maxlength="200" required>
+                <input type="text" name="info" id="popup-profession" placeholder="Деятельность" class="popup__input"
+                    minlength="2" maxlength="200" required>
                 <span class="popup__input-error" id="popup-profession-error"></span>
-                <button class="popup__btn-save" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
+                <button class="popup__btn-save" type="submit" value="Сохранить"
+                    aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
@@ -62,9 +66,11 @@
             </button>
             <h3 class="popup__title">Новое место</h3>
             <form class="popup__textplace" id="formadd" method="post" name="popupAdd">
-                <input type="text" name="name" id="popup-image" placeholder="Название" class="popup__input" minlength="2" maxlength="30" required>
+                <input type="text" name="name" id="popup-image" placeholder="Название" class="popup__input"
+                    minlength="2" maxlength="30" required>
                 <span class="popup__input-error" id="popup-image-error"></span>
-                <input type="url" name="link" id="popup-link" placeholder="Ссылка на картинку" class="popup__input popup__link" required>
+                <input type="url" name="link" id="popup-link" placeholder="Ссылка на картинку"
+                    class="popup__input popup__link" required>
                 <span class="popup__input-error" id="popup-link-error"></span>
                 <button class="popup__btn-save" type="submit" value="Создать" aria-label="Создать">Создать</button>
             </form>
@@ -77,25 +83,28 @@
                     <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
                 </button>
                 <h3 class="popup__title popup__title_without-inputs">Вы уверены?</h3>
-                <form class="popup__textplace" id="formdelete" method="post" name="popupEdit" novalidate autocomplete="off">
-                    <button class="popup__btn-save" type="submit" value="Сохранить" aria-label="Сохранить">Да</button>
+                <form class="popup__textplace" id="formdelete" method="post" name="popupEdit" novalidate
+                    autocomplete="off">
+                    <button class="popup__btn-save" type="submit" value="Да" aria-label="Да">Да</button>
                 </form>
             </div>
         </div>
     </div>
-        <div class="popup" id="profile">
-            <div class="popup__container">
-                <button class="buttons popup__btn-close" aria-label="Закрыть">
-                    <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
-                </button>
-                <h3 class="popup__title">Обновить аватар</h3>
-                <form class="popup__textplace" id="avataredit" method="post" name="popupEdit">
-                    <input type="url" name="link" id="popup-avatar" placeholder="Ссылка на изображение" class="popup__input popup__link" required>
-                    <span class="popup__input-error" id="popup-avatar-error"></span>
-                    <button class="popup__btn-save" type="submit" value="Сохранить" aria-label="Сохранить">Сохранить</button>
-                </form>
-            </div>
+    <div class="popup" id="profile">
+        <div class="popup__container">
+            <button class="buttons popup__btn-close" aria-label="Закрыть">
+                <img class="popup__btn-close-image" src="<%=require('./images/close.svg')%>" alt="Закрыть">
+            </button>
+            <h3 class="popup__title">Обновить аватар</h3>
+            <form class="popup__textplace" id="avataredit" method="post" name="popupEdit">
+                <input type="url" name="link" id="popup-avatar" placeholder="Ссылка на изображение"
+                    class="popup__input popup__link" required>
+                <span class="popup__input-error" id="popup-avatar-error"></span>
+                <button class="popup__btn-save" type="submit" value="Сохранить"
+                    aria-label="Сохранить">Сохранить</button>
+            </form>
         </div>
+    </div>
     <div class="popup" id="image">
         <div class="popup__big-card">
             <button class="buttons popup__btn-close" aria-label="Закрыть">

@@ -1,11 +1,11 @@
-export class UserInfo{
-    constructor({userName, userInfo, userAvatar}){
-    this._name = userName;
-    this._info = userInfo;
-    this._avatar = userAvatar;
+export class UserInfo {
+    constructor({ userName, userInfo, userAvatar }) {
+        this._name = userName;
+        this._info = userInfo;
+        this._avatar = userAvatar;
     };
-    getUserInfo(data){
-        return{
+    getUserInfo(data) {
+        return {
             name: data.name,
             about: data.about,
             id: data._id,
@@ -13,14 +13,14 @@ export class UserInfo{
         };
     }
 
-    setUserInfo(newName, newInfo){
+    setUserInfo(newName, newInfo) {
         {
-        this._name.textContent = newName;
-        this._info.textContent = newInfo;
+            this._name.textContent = newName;
+            this._info.textContent = newInfo;
         }
     }
 
-    setUserAvatar (newAvatar) {
+    setUserAvatar(newAvatar) {
         this._avatar.src = newAvatar;
     }
 }
