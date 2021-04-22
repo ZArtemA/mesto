@@ -10,8 +10,6 @@ export class PopupWithSubmit extends Popup {
 
   setSubmitAction(submitAction) {
     this._handleSubmitCallback = submitAction;
-    console.log(this._handleSubmitCallback);
-    console.log(submitAction);
     return this._handleSubmitCallback
   }
 

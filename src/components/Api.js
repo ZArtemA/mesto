@@ -3,7 +3,23 @@ export class Api {
         this._address = address;
         this._token = token;
         this._groupID = groupID;
+        this._getResJson = this._getResJson.bind(this);
     }
+
+    _getResData (response) {
+        if(response.ok) {
+            return Promise.resolve("done");
+        }
+        return Promise.reject(new Error(`Ошибка: ${response.status}`));
+    }
+
+    _getResJson (response) {
+        if(response.ok) {
+            return response.json();
+        }
+        return Promise.reject(new Error(`Ошибка: ${response.status}`));
+    }
+
 
     getInitialCards() {
         return fetch(`${this._address}/v1/${this._groupID}/cards`, {
@@ -11,12 +27,9 @@ export class Api {
                 authorization: this._token
             }
         }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
-        });
-    }
+        return this._getResJson(response);
+    });
+}
 
     
     addCard(data){
@@ -31,11 +44,10 @@ export class Api {
                 link: data.link
             })
         })
-            .then(response => response.ok
-                ? response.json()
-                : Promise.reject(`Ошибка ${response.status}`))
+        .then(response => {
+            return this._getResJson(response);
+        })
     }
-
 
     removeCard(_id) {
         return fetch(`${this._address}/v1/${this._groupID}/cards/${_id}`, {
@@ -44,10 +56,10 @@ export class Api {
                 authorization: this._token
             }
         })
-        .then(response => response.ok
-            ? Promise.resolve('success')
-            : Promise.reject(`Ошибка ${response.status}`))
-        }
+        .then(response => {
+            return this._getResData(response);
+        })
+    }
 
         
     likeCard(_id) {
@@ -58,10 +70,7 @@ export class Api {
             }
         })
         .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
+            return this._getResJson(response);
         });
     }
 
@@ -72,9 +81,9 @@ export class Api {
                 authorization: this._token
             }
         })
-            .then(response => response.ok
-                ? Promise.resolve('success')
-                : Promise.reject(`Ошибка ${response.status}`))
+        .then(response => {
+            return this._getResData(response);
+        })
     }
 
 
@@ -84,12 +93,9 @@ export class Api {
                 authorization: this._token
             }
         }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
-        });
-    }
+            return this._getResJson(response);
+         });
+ }
 
 
     patchPersonInfo(data) {
@@ -104,10 +110,7 @@ export class Api {
                 about: data.about
             })
         }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
+            return this._getResJson(response);
         });
     }
 
@@ -122,14 +125,7 @@ export class Api {
                 avatar
             })
         }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка ${response.status}`)
+            return this._getResJson(response);
         });
-
     }
-
-    
-
 }

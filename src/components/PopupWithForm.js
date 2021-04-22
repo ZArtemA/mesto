@@ -6,7 +6,6 @@ export class PopupWithForm extends Popup {
     this._form = this._popupSelector.querySelector('.popup__textplace');
     this._inputs = this._form.querySelectorAll('.popup__input');
     this._submitFunction = this._submitFunction.bind(this);
-    this.setEventListeners();
   }
   _getInputValues() {
     const data = {};
