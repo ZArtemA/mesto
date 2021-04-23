@@ -10,9 +10,8 @@ import { Api } from '../components/Api.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { postLoading } from '../utils/utils.js';
 import {
-  gallery, cardSelector, imageSelector, popupEdit, popupAvatar, popupAdd, formEdit,
-  formAdd, cardDelete, formAvatarEdit, buttonEdit, buttonAvatarEdit, nameInput, jobInput,
-  name, profession, avatar, buttonAdd  
+  gallery, cardSelector, formEdit, formAdd, formAvatarEdit, buttonEdit, buttonAvatarEdit,
+   nameInput, jobInput, avatarInput, buttonAdd  
 } from '../utils/data.js';
 
 const api = new Api({
@@ -28,15 +27,18 @@ const api = new Api({
    ])
      .then((result) => {
          const [ownerInfo, cards] = result;
-         person = user.getUserInfo(ownerInfo);
-         user.setUserInfo(person.name, person.about);
-         user.setUserAvatar(person.image);
+         user.setId(ownerInfo.id);
+         user.setUserInfo(ownerInfo.name, ownerInfo.about);
+         user.setUserAvatar(ownerInfo.avatar);
+         person = user.getUserInfo();
          cardList.renderItems(cards);
+         console.log(person)
      })
      .catch((error) => {
          console.log(error);
      });
    
+
    
      const cardList = new Section({
        renderer: (item) => {cardList.addItem(createCard({
@@ -48,23 +50,24 @@ const api = new Api({
      }, gallery);
    
      const submitPopup = new PopupWithSubmit({
-       popupSelector: cardDelete,
+       popupSelector: `#delete`,
        handleFormSubmit: function(){}});
+       submitPopup.setEventListeners();
    
      const createCard = (data) => {
        const card = new Card({
          data,
          handleDeleteButtonClick: (id) => {
            submitPopup.setSubmitAction(() => {
-             postLoading(true, cardDelete);
+             postLoading(true, `#delete`);
              api.removeCard(card.getId())
              .then(result => {
                  card.deleteCard();
+                 submitPopup.close();
              })
              .catch(error => console.log(error));
-                   postLoading(false, cardDelete);
+                   postLoading(false, `#delete`);
        });
-       submitPopup.setEventListeners();
        submitPopup.open();
          },
    
@@ -96,9 +99,9 @@ const api = new Api({
      return newCard;
    }
    
-   const popupAddCard = new PopupWithForm(popupAdd,
+   const popupAddCard = new PopupWithForm(`#add`,
        function submitForm(data) {
-         postLoading(true, popupAdd);
+         postLoading(true, `#add`);
            api.addCard({...data})
                .then(result => {
                    cardList.addItem(createCard({
@@ -110,46 +113,45 @@ const api = new Api({
                })
                .catch(error => console.log(error))
                .finally(() => {
-                 postLoading(false, popupAdd);
+                 postLoading(false, `#add`);
                })
    });
+   popupAddCard.setEventListeners();
    
    buttonAdd.addEventListener('click', () => {
      popupAddCard.open();
-     popupAddCard.setEventListeners();
      addCardFormValidator.resetErrors();
    });
    
-   const popupImage = new PopupWithImage(imageSelector); 
+   const popupImage = new PopupWithImage(`#image`); 
    const user = new UserInfo({
-     userName: name,
-     userInfo: profession,
-     userAvatar: avatar
+    profileNameSelector: '.profile__name',
+    profileJobSelector: '.profile__profession',
+    profileAvatarSelector: '.profile__image'
    });
    
    
-   const popupEditProfile = new PopupWithForm(popupEdit,
-       function submitForm(data) {
-         postLoading(true, popupEdit);
-         data.about = data.info;
-         const {name, about} = user.getUserInfo(data);
-         person.name = name;
-         person.about = about;
+   const popupEditProfile = new PopupWithForm(`#edit`,
+       function submitForm() {
+         postLoading(true, `#edit`);
+         let {name, about} = user.getUserInfo();
+         name = nameInput.value;
+         about = person.about;
            api.patchPersonInfo({name, about})
                .then(() => {
-                   user.setUserInfo(name, about);
+                user.setUserInfo(nameInput.value, jobInput.value);
                    popupEditProfile.close();
                })
                .catch(error => console.log(error))
                .finally(() => {
-                 postLoading(false, popupEdit);
+                 postLoading(false, `#edit`);
                })
    });
+   popupEditProfile.setEventListeners();
    
    
    buttonEdit.addEventListener('click', () => {
      popupEditProfile.open();
-     popupEditProfile.setEventListeners();
      const {name, about} = user.getUserInfo(person);
      nameInput.value = name;
      jobInput.value = about;
@@ -157,26 +159,25 @@ const api = new Api({
    });
    
    
-   const popupChangeAvatar = new PopupWithForm(popupAvatar,
-       function submitForm(data) {
-         postLoading(true, popupAvatar);
-         data.avatar = data.link;
-           const {image} = user.getUserInfo(data);
-           person.image = image;
-           api.patchAvatar(image)
+   const popupChangeAvatar = new PopupWithForm(`#profile`,
+       function submitForm() {
+         postLoading(true, `#profile`);
+           let {avatar} = user.getUserInfo();
+           avatar = avatarInput.value;
+           api.patchAvatar(avatar)
                .then(() => {
-                   user.setUserAvatar(image);
+                user.setUserAvatar(avatar);
                    popupChangeAvatar.close();
                })
                .catch(error => console.log(error))
                .finally(() => {
-                 postLoading(false, popupAvatar);
+                 postLoading(false, `#profile`);
                })
    });
+   popupChangeAvatar.setEventListeners();
    
    buttonAvatarEdit.addEventListener('click', () => {
      popupChangeAvatar.open();
-     popupChangeAvatar.setEventListeners();
      editAvatarFormValidator.resetErrors();
    });
    

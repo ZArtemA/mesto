@@ -3,7 +3,7 @@ export class PopupWithSubmit extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleSubmitCallback = handleFormSubmit;
-    this._form = this._popupSelector.querySelector('.popup__textplace');
+    this._form = this._popup.querySelector('.popup__textplace');
     this._submitFunction = this._submitFunction.bind(this);
     this.setEventListeners();
   }
@@ -16,7 +16,6 @@ export class PopupWithSubmit extends Popup {
   _submitFunction(evt) {
     evt.preventDefault();
     this._handleSubmitCallback();
-    this.close();
   };
 
 
@@ -26,6 +25,5 @@ export class PopupWithSubmit extends Popup {
   }
   close() {
     super.close();
-    this._form.removeEventListener('submit', this._submitFunction);
   }
 }

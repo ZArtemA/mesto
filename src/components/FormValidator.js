@@ -1,17 +1,5 @@
-const settings = {
-  formSelector: '.popup__textplace',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__btn-save',
-  inactiveButtonClass: 'popup__btn-save_invalid',
-  inputErrorClass: 'popup__input_invalid',
-  errorMessage: 'popup__input-error',
-  inputSelectorLink: 'popup__link'
-};
+import { settings, errorMessages } from '../utils/data.js';
 
-const errorMessages = {
-  passError: 'Вы пропустили это поле.',
-  missUrlError: 'Введите адрес сайта.'
-};
 
 class FormValidator {
   constructor(settings, form) {

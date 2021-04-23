@@ -94,6 +94,9 @@ export class Api {
             }
         }).then(response => {
             return this._getResJson(response);
+         }).then(userInfo => {
+             const info = {name: userInfo.name, about: userInfo.about, id: userInfo._id, avatar: userInfo.avatar}
+             return info;
          });
  }
 

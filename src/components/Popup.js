@@ -2,19 +2,19 @@ import { escape } from '../utils/data.js';
 export class Popup {
   constructor(popupSelector) {
     this._popupSelector = popupSelector;
+    this._popup = document.querySelector(this._popupSelector);
     this.close = this.close.bind(this);
     this.open = this.open.bind(this);
   }
 
   open() {
-    this._popupSelector.classList.add('popup_opened');
+    this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
-    this._popupSelector.addEventListener('click', this._handleCloseByOverlay);
   }
 
   close() {
-    this._popupSelector.classList.remove('popup_opened');
-    this._popupSelector.removeEventListener('click', this._handleCloseByOverlay);
+    this._popup.classList.remove('popup_opened');
+    this._popup.removeEventListener('click', this._handleCloseByOverlay);
     document.removeEventListener('keydown', this._handleEscClose);
   }
   _handleCloseByOverlay = (event) => {
@@ -31,7 +31,8 @@ export class Popup {
 
 
   setEventListeners() {
-    this._popupSelector.querySelector('.popup__btn-close').addEventListener('click', this.close);
+    this._popup.querySelector('.popup__btn-close').addEventListener('click', this.close);
+    this._popup.addEventListener('click', this._handleCloseByOverlay);
   };
 
 }
