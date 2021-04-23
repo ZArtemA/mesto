@@ -139,7 +139,7 @@ const api = new Api({
          about = jobInput.value;
            api.patchPersonInfo({name, about})
                .then(() => {
-                user.setUserInfo(nameInput.value, jobInput.value);
+                user.setUserInfo(name, about);
                    popupEditProfile.close();
                })
                .catch(error => console.log(error))
