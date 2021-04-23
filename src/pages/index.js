@@ -136,7 +136,7 @@ const api = new Api({
          postLoading(true, `#edit`);
          let {name, about} = user.getUserInfo();
          name = nameInput.value;
-         about = person.about;
+         about = jobInput.value;
            api.patchPersonInfo({name, about})
                .then(() => {
                 user.setUserInfo(nameInput.value, jobInput.value);
