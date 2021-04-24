@@ -19,7 +19,6 @@ const api = new Api({
    token: `f797dee9-663e-4fb3-a082-41f0cffe7621`,
    groupID: `cohort-22`});
 
-   let person;
 
    Promise.all([
      api.getPersonInfo(),
@@ -30,10 +29,9 @@ const api = new Api({
          user.setId(ownerInfo.id);
          user.setUserInfo(ownerInfo.name, ownerInfo.about);
          user.setUserAvatar(ownerInfo.avatar);
-         person = user.getUserInfo();
+         user.getUserInfo();
          cardList.renderItems(cards);
-         console.log(person)
-     })
+      })
      .catch((error) => {
          console.log(error);
      });
@@ -95,7 +93,7 @@ const api = new Api({
        
      );
      const newCard = card.generateCard();
-     card.checkUser(person);
+     card.checkUser(user.getUserInfo());
      return newCard;
    }
    
@@ -152,7 +150,7 @@ const api = new Api({
    
    buttonEdit.addEventListener('click', () => {
      popupEditProfile.open();
-     const {name, about} = user.getUserInfo(person);
+     const {name, about} = user.getUserInfo();
      nameInput.value = name;
      jobInput.value = about;
      editProfileFormValidator.resetErrors();
