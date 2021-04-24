@@ -31,6 +31,7 @@ const api = new Api({
          user.setUserAvatar(ownerInfo.avatar);
          user.getUserInfo();
          cardList.renderItems(cards);
+         console.log(user);
       })
      .catch((error) => {
          console.log(error);
