@@ -28,3 +28,5 @@ __Механизм лайка и удаления__
 __Проект собран сборщиком WebPack с надстройками:__
 * Babel
 * PostCSS
+
+__Сайт:__ https://zartema.github.io/mesto/
